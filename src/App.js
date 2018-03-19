@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import getSparkline from './helpers/getSparkline';
+import formatSharpeRatios from './helpers/formatSharpeRatios';
+import SharpeRatios from './components/SharpeRatios';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      sharpeRatios: []
+    }
+  }
+
+  componentDidMount = async () => {
+    console.log('getting data')
+    const rawData = await getSparkline();
+    const sharpeRatios = formatSharpeRatios(rawData);
+    console.log('got data')
+    
+    this.setState({ sharpeRatios: sharpeRatios });
+    console.log('set state')
+  }
+
   render() {
+    console.log('rendering app')
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SharpeRatios 
+          sharpeRatios={this.state.sharpeRatios}
+        />
       </div>
     );
   }
