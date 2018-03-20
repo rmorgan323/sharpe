@@ -16,7 +16,7 @@ class SharpeRatios extends Component {
       if (a[type] > b[type]) { return 1 };
       return 0;
     });
-    type === 'value' ? display = display.reverse() : null;
+    type !== 'symbol' ? display = display.reverse() : null;
 
     return display;
   }
@@ -28,7 +28,10 @@ class SharpeRatios extends Component {
       return (
         <tr key={`${currency}-${index}`} >
           <td>{currency.symbol}</td>
-          <td>{currency.value}</td>
+          <td>{currency.sharpe.toFixed(3)}</td>
+          <td>{currency.totalReturn.toFixed(3)}</td>
+          <td>{currency.avgDailyReturn.toFixed(3)}</td>
+          <td>{currency.stdDeviation.toFixed(3)}</td>
         </tr>
       );
     })
@@ -44,8 +47,11 @@ class SharpeRatios extends Component {
         <table>
           <thead>
             <tr>
-              <th><button onClick={() => this.sortBy('symbol')}>currency</button></th>
-              <th><button onClick={() => this.sortBy('value')}>Sharpe ratio</button></th>
+              <th><button onClick={() => this.sortBy('symbol')}>Currency</button></th>
+              <th><button onClick={() => this.sortBy('sharpe')}>Sharpe Ratio</button></th>
+              <th><button onClick={() => this.sortBy('totalReturn')}>Total Return</button></th>
+              <th><button onClick={() => this.sortBy('avgDailyReturn')}>Average Daily Return</button></th>
+              <th><button onClick={() => this.sortBy('stdDeviation')}>Standard Deviation</button></th>
             </tr>
           </thead>
           <tbody>
