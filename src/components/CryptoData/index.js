@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import './index.css';
 
 class CryptoData extends Component {
   constructor(props) {
@@ -24,17 +25,24 @@ class CryptoData extends Component {
     return display;
   }
 
+  displayClass = (type) => {
+    const currentType = this.state.sort;
+    if (currentType === type) {
+      return "button-active";
+    }
+  }
+
   displayCryptoData = () => {
     const orderedData = this.orderCryptoData(this.props.cryptoData);
-  
+
     return orderedData.map((currency, index) => {
       return (
-        <tr key={`${currency}-${index}`} >
+        <tr className="table-row-data" key={`${currency}-${index}`} >
           <td>{currency.symbol}</td>
-          <td>{currency.sharpe.toFixed(3)}</td>
-          <td>{currency.totalReturn.toFixed(3)}</td>
-          <td>{currency.avgDailyReturn.toFixed(3)}</td>
-          <td>{currency.stdDeviation.toFixed(3)}</td>
+          <td className="align-right">{currency.sharpe.toFixed(3)}</td>
+          <td className="align-right">{currency.totalReturn.toFixed(3)}</td>
+          <td className="align-right">{currency.avgDailyReturn.toFixed(3)}</td>
+          <td className="align-right">{currency.stdDeviation.toFixed(3)}</td>
         </tr>
       );
     });
@@ -47,23 +55,38 @@ class CryptoData extends Component {
   render() {
     return (
       <div className="CryptoData">
-        <table>
+        <table cellSpacing="0">
           <thead>
             <tr>
               <th>
-                <button onClick={() => this.sortBy('symbol')}>Currency</button>
+                <button 
+                  onClick={() => this.sortBy('symbol')}
+                  className={this.displayClass('symbol')}
+                >Currency</button>
               </th>
               <th>
-                <button onClick={() => this.sortBy('sharpe')}>Sharpe Ratio</button>
+                <button 
+                  onClick={() => this.sortBy('sharpe')}
+                  className={this.displayClass('sharpe')}
+                >Sharpe Ratio</button>
               </th>
               <th>
-                <button onClick={() => this.sortBy('totalReturn')}>Total Return</button>
+                <button 
+                  onClick={() => this.sortBy('totalReturn')}
+                  className={this.displayClass('totalReturn')}
+                >Total Return</button>
               </th>
               <th>
-                <button onClick={() => this.sortBy('avgDailyReturn')}>Average Daily Return</button>
+                <button 
+                  onClick={() => this.sortBy('avgDailyReturn')}
+                  className={this.displayClass('avgDailyReturn')}
+                >Average Daily Return</button>
               </th>
               <th>
-                <button onClick={() => this.sortBy('stdDeviation')}>Standard Deviation</button>
+                <button 
+                  onClick={() => this.sortBy('stdDeviation')}
+                  className={this.displayClass('stdDeviation')}
+                >Standard Deviation</button>
               </th>
             </tr>
           </thead>

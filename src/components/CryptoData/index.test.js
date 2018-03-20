@@ -18,6 +18,11 @@ describe('CryptoData tests', () => {
     expect(renderedCryptoData.state('sort')).toEqual('symbol');
   });
 
+  it('displayClass should return a class only if button is active', () => {
+    expect(renderedCryptoData.instance().displayClass('symbol')).toEqual('button-active');
+    expect(renderedCryptoData.instance().displayClass('sharpe')).toEqual(undefined);
+  });
+
   it('sortBy should update state', () => {
     renderedCryptoData.instance().sortBy('sharpe');
 

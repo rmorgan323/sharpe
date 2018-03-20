@@ -1,0 +1,39 @@
+table {
+  margin: 20px auto;
+}
+
+button {
+  height: 50px;
+  width: 107px;
+
+  background-color: #888;
+  color: #fff;
+  font-size: 15px;
+  
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color .2s ease-in-out;
+}
+
+button:hover {
+  background-color: #0068fa;
+}
+
+.button-active {
+  background-color: #0068fa;
+  transition: background-color .2s ease-in-out;
+}
+
+.align-right {
+  text-align: right;
+}
+
+td {
+  margin: 0 -1px;
+  padding: 4px 8px;
+}
+
+.table-row-data:hover {
+  background-color: #eee;
+}
