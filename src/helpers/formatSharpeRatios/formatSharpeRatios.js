@@ -17,12 +17,12 @@ const formatSharpeRatios = (rawData) => {
 
     accum.push({ 
       symbol: currency.currency, 
-      sharpe: sharpe.toFixed(3), 
-      totalReturn: totalReturn.toFixed(3), 
-      avgDailyReturn: avgDailyReturn.toFixed(3), 
-      stdDeviation: stdDeviation .toFixed(3)
+      sharpe: sharpe, 
+      totalReturn: totalReturn, 
+      avgDailyReturn: avgDailyReturn, 
+      stdDeviation: stdDeviation 
     });
-
+    
     return accum;
   }, []);
 
