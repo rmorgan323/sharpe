@@ -8,11 +8,21 @@ const formatSharpeRatios = (rawData) => {
     
     let returns = [];
     for (let i = 1; i < currency.closes.length; i++) {
-      returns.push((currency.closes[i] - currency.closes[i - 1]) / currency.closes[i - 1])
+      returns.push((currency.closes[i] - currency.closes[i - 1]) / currency.closes[i - 1]);
     };
-    const sharpe = math.mean(returns) / math.std(returns);
+    const totalReturn = (currency.closes[currency.closes.length - 1] - currency.closes[0]) / currency.closes[0];
+    const avgDailyReturn = math.mean(returns);
+    const stdDeviation = math.std(returns);
+    const sharpe = avgDailyReturn / stdDeviation;
 
-    accum.push({ symbol: currency.currency, value: sharpe });
+    accum.push({ 
+      symbol: currency.currency, 
+      sharpe: sharpe, 
+      totalReturn: totalReturn, 
+      avgDailyReturn: avgDailyReturn, 
+      stdDeviation: stdDeviation 
+    });
+    
     return accum;
   }, []);
 
