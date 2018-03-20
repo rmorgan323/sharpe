@@ -13,10 +13,6 @@ describe('App tests', () => {
     expect(renderedApp).toBeDefined();
   });
 
-  it('should match the snapshot', () => {
-    expect(renderedApp).toMatchSnapshot();
-  });
-
   it('should have a default state', () => {
     expect(renderedApp.state('cryptoData')).toEqual([]);
   });

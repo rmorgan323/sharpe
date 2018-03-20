@@ -5,13 +5,7 @@ import CryptoData from '../../components/CryptoData';
 import './index.css';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      cryptoData: []
-    };
-  }
+  state = { cryptoData: [] }
 
   componentDidMount = async () => {
     const rawData = await getSparkline();

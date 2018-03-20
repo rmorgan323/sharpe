@@ -5,12 +5,11 @@ import { PropTypes } from 'prop-types';
 import './index.css';
 
 class CryptoData extends Component {
-  constructor(props) {
-    super(props);
+  state = { sort: 'symbol' }
 
-    this.state = {
-      sort: 'symbol'
-    };
+  sortBy = (event) => {
+    const { name } = event.target;
+    this.setState({ sort: name });
   }
 
   orderCryptoData = (values) => {
@@ -48,9 +47,6 @@ class CryptoData extends Component {
     });
   }
 
-  sortBy = (type) => {
-    this.setState({sort: type});
-  }
 
   render() {
     return (
@@ -60,31 +56,36 @@ class CryptoData extends Component {
             <tr>
               <th>
                 <button 
-                  onClick={() => this.sortBy('symbol')}
+                  onClick={this.sortBy}
+                  name={'symbol'}
                   className={this.displayClass('symbol')}
                 >Currency</button>
               </th>
               <th>
                 <button 
-                  onClick={() => this.sortBy('sharpe')}
+                  onClick={this.sortBy}
+                  name={'sharpe'}
                   className={this.displayClass('sharpe')}
                 >Sharpe Ratio</button>
               </th>
               <th>
                 <button 
-                  onClick={() => this.sortBy('totalReturn')}
+                  onClick={this.sortBy}
+                  name={'totalReturn'}
                   className={this.displayClass('totalReturn')}
                 >Total Return</button>
               </th>
               <th>
                 <button 
-                  onClick={() => this.sortBy('avgDailyReturn')}
+                  onClick={this.sortBy}
+                  name={'avgDailyReturn'}
                   className={this.displayClass('avgDailyReturn')}
                 >Average Daily Return</button>
               </th>
               <th>
                 <button 
-                  onClick={() => this.sortBy('stdDeviation')}
+                  onClick={this.sortBy}
+                  name={'stdDeviation'}
                   className={this.displayClass('stdDeviation')}
                 >Standard Deviation</button>
               </th>
