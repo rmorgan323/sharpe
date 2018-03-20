@@ -5,14 +5,14 @@ class SharpeRatios extends Component {
     super(props);
 
     this.state = {
-      sort: 'currency'
+      sort: 'symbol'
     }
   }
 
   displaySharpeRatios = () => {
     let display = this.props.sharpeRatios.sort((a, b) => {
-      if (this.state.sort === 'currency') {
-        return a.currency.localeCompare(b.currency);
+      if (this.state.sort === 'symbol') {
+        return a.symbol.localeCompare(b.symbol);
       } else if (this.state.sort === 'value') {
         return b.value - a.value;
       }
@@ -20,8 +20,8 @@ class SharpeRatios extends Component {
 
     return display.map((currency, index) => {
       return (
-        <tr key={`currency-${index}`} >
-          <td>{currency.currency}</td>
+        <tr key={`${currency}-${index}`} >
+          <td>{currency.symbol}</td>
           <td>{currency.value}</td>
         </tr>
       );
@@ -38,7 +38,7 @@ class SharpeRatios extends Component {
         <table>
           <thead>
             <tr>
-              <th><button onClick={() => this.sortBy('currency')}>currency</button></th>
+              <th><button onClick={() => this.sortBy('symbol')}>currency</button></th>
               <th><button onClick={() => this.sortBy('value')}>Sharpe ratio</button></th>
             </tr>
           </thead>

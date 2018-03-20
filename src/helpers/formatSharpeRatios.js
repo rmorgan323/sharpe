@@ -12,7 +12,7 @@ const formatSharpeRatios = (rawData) => {
     };
     const sharpe = math.mean(returns) / math.std(returns);
 
-    accum.push({ currency: currency.currency, value: sharpe });
+    accum.push({ symbol: currency.currency, value: sharpe });
     return accum;
   }, []);
 
