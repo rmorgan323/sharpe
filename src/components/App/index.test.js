@@ -4,10 +4,8 @@ import { shallow } from 'enzyme';
 
 describe('App tests', () => {
   let renderedApp;
-  let getSparkline;
 
   beforeEach(() => {
-    getSparkline = jest.fn();
     renderedApp = shallow(<App />, {disableLifecycleMethods: true});
   });
 
@@ -20,6 +18,6 @@ describe('App tests', () => {
   });
 
   it('should have a default state', () => {
-    expect(renderedApp.state('sharpeRatios')).toEqual([]);
+    expect(renderedApp.state('cryptoData')).toEqual([]);
   });
 });

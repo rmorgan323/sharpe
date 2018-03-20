@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SharpeRatios tests should match the snapshot 1`] = `
+exports[`CryptoData tests should match the snapshot 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <SharpeRatios
-    sharpeRatios={
+  Symbol(enzyme.__unrendered__): <CryptoData
+    cryptoData={
         Array [
             Object {
               "avgDailyReturn": 0.05605384475854788,
@@ -113,7 +113,7 @@ ShallowWrapper {
                 </tr>
         </tbody>
 </table>,
-      "className": "SharpeRatios",
+      "className": "CryptoData",
     },
     "ref": null,
     "rendered": Object {
@@ -726,7 +726,7 @@ ShallowWrapper {
                     </tr>
           </tbody>
 </table>,
-        "className": "SharpeRatios",
+        "className": "CryptoData",
       },
       "ref": null,
       "rendered": Object {

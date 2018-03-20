@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import getSparkline from '../../helpers/getSparkline/getSparkline';
-import formatSharpeRatios from '../../helpers/formatSharpeRatios/formatSharpeRatios';
-import SharpeRatios from '../../components/SharpeRatios';
+import formatCryptoData from '../../helpers/formatCryptoData/formatCryptoData';
+import CryptoData from '../../components/CryptoData';
 import './index.css';
 
 class App extends Component {
@@ -9,22 +9,22 @@ class App extends Component {
     super();
 
     this.state = {
-      sharpeRatios: []
-    }
+      cryptoData: []
+    };
   }
 
   componentDidMount = async () => {
     const rawData = await getSparkline();
-    const sharpeRatios = formatSharpeRatios(rawData);
+    const cryptoData = formatCryptoData(rawData);
     
-    this.setState({ sharpeRatios: sharpeRatios });
+    this.setState({ cryptoData: cryptoData });
   }
 
   render() {
     return (
       <div className="App">
-        <SharpeRatios 
-          sharpeRatios={this.state.sharpeRatios}
+        <CryptoData
+          cryptoData={this.state.cryptoData}
         />
       </div>
     );

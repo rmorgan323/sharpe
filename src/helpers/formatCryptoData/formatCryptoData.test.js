@@ -1,9 +1,9 @@
-import formatSharpeRatios from './formatSharpeRatios';
+import formatCryptoData from './formatCryptoData';
 import mockRawSparkline from '../mockData/mockRawSparkline';
 
-describe('formatSharpeRatios tests', () => {
+describe('formatCryptoData tests', () => {
   it('should return a clean array of objects', () => {
-    const sharpeRatio = formatSharpeRatios(mockRawSparkline);
+    const sharpeRatio = formatCryptoData(mockRawSparkline);
 
     expect(sharpeRatio).toEqual([{
       avgDailyReturn: 0.009403158468861547, 

@@ -1,7 +1,9 @@
+/* eslint-disable id-length */
+
 import math from 'mathjs';
 
-const formatSharpeRatios = (rawData) => {
-  const sharpeRatio = rawData.year.reduce((accum, currency) => {
+const formatCryptoData = (rawData) => {
+  const cryptoData = rawData.year.reduce((accum, currency) => {
     if (currency.closes.length <= 14) {
       return accum;
     }
@@ -9,8 +11,10 @@ const formatSharpeRatios = (rawData) => {
     let returns = [];
     for (let i = 1; i < currency.closes.length; i++) {
       returns.push((currency.closes[i] - currency.closes[i - 1]) / currency.closes[i - 1]);
-    };
-    const totalReturn = (currency.closes[currency.closes.length - 1] - currency.closes[0]) / currency.closes[0];
+    }
+    const totalReturn = (
+      (currency.closes[currency.closes.length - 1] - currency.closes[0]) / currency.closes[0]
+    );
     const avgDailyReturn = math.mean(returns);
     const stdDeviation = math.std(returns);
     const sharpe = avgDailyReturn / stdDeviation;
@@ -26,7 +30,7 @@ const formatSharpeRatios = (rawData) => {
     return accum;
   }, []);
 
-  return sharpeRatio;
+  return cryptoData;
 };
 
-export default formatSharpeRatios;
+export default formatCryptoData;
