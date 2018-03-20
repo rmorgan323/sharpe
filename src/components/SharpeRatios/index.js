@@ -10,13 +10,14 @@ class SharpeRatios extends Component {
   }
 
   displaySharpeRatios = () => {
+    const type = this.state.sort;
     let display = this.props.sharpeRatios.sort((a, b) => {
-      if (this.state.sort === 'symbol') {
-        return a.symbol.localeCompare(b.symbol);
-      } else if (this.state.sort === 'value') {
-        return b.value - a.value;
-      }
+      if (a[type] < b[type]) { return -1 };
+      if (a[type] > b[type]) { return 1 };
+      return 0;
     });
+
+    type === 'value' ? display = display.reverse() : null;
 
     return display.map((currency, index) => {
       return (
