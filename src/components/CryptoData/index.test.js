@@ -10,21 +10,36 @@ describe('CryptoData tests', () => {
     renderedCryptoData = shallow(<CryptoData cryptoData={mockCleanSparkline} />);
   });
 
-  it('should match the snapshot', () => {
-    expect(renderedCryptoData).toMatchSnapshot();
+  it('displayClass should return a class only if button is active', () => {
+    expect(renderedCryptoData.instance().displayClass('symbol')).toEqual('button-active');
+    expect(renderedCryptoData.instance().displayClass('sharpe')).toEqual(undefined);
+  });
+
+  it('only active button should have class of button-active', () => {
+    expect(renderedCryptoData.find('button').first().hasClass('button-active')).toEqual(true);
+    expect(renderedCryptoData.find('button').last().hasClass('button-active')).toEqual(false);
+
+    const mockEvent = { target: { name: 'stdDeviation' } };
+    renderedCryptoData.find('button').last().simulate('click', mockEvent);
+
+    expect(renderedCryptoData.find('button').first().hasClass('button-active')).toEqual(false);
+    expect(renderedCryptoData.find('button').last().hasClass('button-active')).toEqual(true);
   });
 
   it('should have an initial state', () => {
     expect(renderedCryptoData.state('sort')).toEqual('symbol');
   });
 
-  it('displayClass should return a class only if button is active', () => {
-    expect(renderedCryptoData.instance().displayClass('symbol')).toEqual('button-active');
-    expect(renderedCryptoData.instance().displayClass('sharpe')).toEqual(undefined);
+  it('should update state on button click', () => {
+    const mockEvent = { target: { name: 'stdDeviation' } };
+    renderedCryptoData.find('button').last().simulate('click', mockEvent);
+
+    expect(renderedCryptoData.state('sort')).toEqual('stdDeviation');
   });
 
   it('sortBy should update state', () => {
-    renderedCryptoData.instance().sortBy('sharpe');
+    const mockEvent = { target: { name: 'sharpe' } };
+    renderedCryptoData.instance().sortBy(mockEvent);
 
     expect(renderedCryptoData.state('sort')).toEqual('sharpe');
   });
@@ -62,12 +77,14 @@ describe('CryptoData tests', () => {
         stdDeviation: 0.16644098437935959
       }
     ];
+    const mockEvent1 = { target: { name: 'sharpe' } };
+    const mockEvent2 = { target: { name: 'totalReturn' } };
 
-    renderedCryptoData.instance().sortBy('sharpe');
+    renderedCryptoData.instance().sortBy(mockEvent1);
     expect(renderedCryptoData.instance().orderCryptoData(mockCleanSparkline))
       .toEqual(expectedBefore);
 
-    renderedCryptoData.instance().sortBy('totalReturn');
+    renderedCryptoData.instance().sortBy(mockEvent2);
     expect(renderedCryptoData.instance().orderCryptoData(mockCleanSparkline))
       .toEqual(expectedAfter);
   });
