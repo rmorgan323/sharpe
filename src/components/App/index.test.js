@@ -3,11 +3,23 @@ import App from './index';
 import { shallow } from 'enzyme';
 
 describe('App tests', () => {
-  // it('should match the snapshot', () => {
-  //   const renderedApp = shallow(<App />, {disableLifeCycleMethods: true});
+  let renderedApp;
+  let getSparkline;
 
-  //   expect(renderedApp).toMatchSnapshot();
-  // });
+  beforeEach(() => {
+    getSparkline = jest.fn();
+    renderedApp = shallow(<App />, {disableLifecycleMethods: true});
+  });
+
+  it('renders without crashing', () => {
+    expect(renderedApp).toBeDefined();
+  });
+
+  it('should match the snapshot', () => {
+    expect(renderedApp).toMatchSnapshot();
+  });
+
+  it('should have a default state', () => {
+    expect(renderedApp.state('sharpeRatios')).toEqual([]);
+  });
 });
-
-
