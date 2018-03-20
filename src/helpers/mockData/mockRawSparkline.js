@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-const mockRawData = {
+const mockRawSparkline = {
   'year': [
     {
       'currency': 'BTC',
@@ -9,4 +9,4 @@ const mockRawData = {
   ]
 };
 
-export default mockRawData;
+export default mockRawSparkline;

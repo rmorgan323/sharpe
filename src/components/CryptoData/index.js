@@ -19,7 +19,8 @@ class CryptoData extends Component {
       if (a[type] > b[type]) { return 1; }
       return 0;
     });
-    type !== 'symbol' ? display = display.reverse() : null;
+
+    if (type !== 'symbol') { display = display.reverse(); }
 
     return display;
   }
@@ -46,7 +47,6 @@ class CryptoData extends Component {
       );
     });
   }
-
 
   render() {
     return (
