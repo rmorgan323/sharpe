@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import getSparkline from '../../helpers/getSparkline';
-import formatSharpeRatios from '../../helpers/formatSharpeRatios';
+import getSparkline from '../../helpers/getSparkline/getSparkline';
+import formatSharpeRatios from '../../helpers/formatSharpeRatios/formatSharpeRatios';
 import SharpeRatios from '../../components/SharpeRatios';
 import './index.css';
 
