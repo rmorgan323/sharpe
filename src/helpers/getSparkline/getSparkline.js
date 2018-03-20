@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const getSparkline = async () => {
   try {
     const results = await fetch('https://api.nomics.com/v0/sparkline');
