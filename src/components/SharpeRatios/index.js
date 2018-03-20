@@ -9,17 +9,22 @@ class SharpeRatios extends Component {
     }
   }
 
-  displaySharpeRatios = () => {
+  orderSharpeRatios = (data) => {
     const type = this.state.sort;
-    let display = this.props.sharpeRatios.sort((a, b) => {
+    let display = data.sort((a, b) => {
       if (a[type] < b[type]) { return -1 };
       if (a[type] > b[type]) { return 1 };
       return 0;
     });
-
     type === 'value' ? display = display.reverse() : null;
 
-    return display.map((currency, index) => {
+    return display;
+  }
+
+  displaySharpeRatios = () => {
+    const orderedData = this.orderSharpeRatios(this.props.sharpeRatios);
+  
+    return orderedData.map((currency, index) => {
       return (
         <tr key={`${currency}-${index}`} >
           <td>{currency.symbol}</td>
